@@ -3,6 +3,7 @@ package edu.spring.td1.controller
 import edu.spring.td1.models.Item
 import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.*
+import org.springframework.web.servlet.mvc.support.RedirectAttributes
 import org.springframework.web.servlet.view.RedirectView
 
 
@@ -19,7 +20,7 @@ class ItemsController {
         }
 
     @RequestMapping("/")
-    fun indexAction():String{
+    fun indexAction(@RequestAttribute("msg") msg:String?):String{
         return "index"
     }
 
@@ -29,8 +30,9 @@ class ItemsController {
     }
 
     @PostMapping("/addNew")
-    fun addNewAction(@ModelAttribute("nom")nom:String, @SessionAttribute("items")items: HashSet<Item>): RedirectView {
+    fun addNewAction(@ModelAttribute("nom")nom:String, @SessionAttribute("items")items: HashSet<Item>, attrs:RedirectAttributes): RedirectView {
         items.add(Item(nom))
+        attrs.addFlashAttribute("msg","$nom ajouté dans les items")
         return RedirectView("/")
     }
 
