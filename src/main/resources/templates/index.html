@@ -2,9 +2,7 @@
 <h1>Gestion d'items</h1>
 <a class="ui button" href="/new">Ajouter un item</a>
 {{#msg}}
-    <div class="ui success message">
-        {{.}}
-    </div>
+    {{> partials/message}}
 {{/msg}}
 <div class="ui list">
 {{#items}}

@@ -1,6 +1,7 @@
 package edu.spring.td1.controller
 
 import edu.spring.td1.models.Item
+import edu.spring.td1.services.UIMessage
 import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.*
 import org.springframework.web.servlet.mvc.support.RedirectAttributes
@@ -20,7 +21,7 @@ class ItemsController {
         }
 
     @RequestMapping("/")
-    fun indexAction(@RequestAttribute("msg") msg:String?):String{
+    fun indexAction(@RequestAttribute("msg") msg:UIMessage.Message?):String{
         return "index"
     }
 
@@ -31,8 +32,11 @@ class ItemsController {
 
     @PostMapping("/addNew")
     fun addNewAction(@ModelAttribute("nom")nom:String, @SessionAttribute("items")items: HashSet<Item>, attrs:RedirectAttributes): RedirectView {
-        items.add(Item(nom))
-        attrs.addFlashAttribute("msg","$nom ajouté dans les items")
+        if(items.add(Item(nom))){
+            attrs.addFlashAttribute("msg",UIMessage.message("Ajout d'item","$nom ajouté dans les items"))
+        } else {
+            attrs.addFlashAttribute("msg",UIMessage.message("Ajout d'item","$nom est déjà dans la liste,<br>Il n'a pas été ajouté","warning","warning circle"))
+        }
         return RedirectView("/")
     }
 
