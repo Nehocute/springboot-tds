@@ -4,25 +4,29 @@
 {{#msg}}
     {{> partials/message}}
 {{/msg}}
-<div class="ui list">
-{{#items}}
-    <div class="item">{{nom}}
-        <a class="ui icon button" href="/inc/{{nom}}">
-            <i class="plus icon"></i>
-        </a>
-        <a class="ui icon button" href="/dec/{{nom}}">
-            <i class="minus icon"></i>
-        </a>
-        <a class="ui icon button" href="/items/edit/{{nom}}">
-            <i class="edit icon"></i>
-        </a>
-        <a class="ui icon button" href="/items/delete/{{nom}}">
-            <i class="delete icon"></i>
-        </a>
+<div class="ui top attached tabular menu">
+{{#categories}}
+    <a class="item active" data-tab="{{libelle}}">{{libelle}}</a>
+    <div class="ui bottom attached tab segment active" data-tab="{{libelle}}">
+    {{#items}}
+        <div class="item">{{nom}}
+            <a class="ui icon button" href="/inc/{{nom}}">
+                <i class="plus icon"></i>
+            </a>
+            <a class="ui icon button" href="/dec/{{nom}}">
+                <i class="minus icon"></i>
+            </a>
+            <a class="ui icon button" href="/items/edit/{{nom}}">
+                <i class="edit icon"></i>
+            </a>
+            <a class="ui icon button" href="/items/delete/{{nom}}">
+                <i class="delete icon"></i>
+            </a>
 
-        {{evaluation}}
+            {{evaluation}}
+        </div>
+    {{/items}}
     </div>
-{{/items}}
+{{/categories}}
 </div>
-
 {{> partials/header }}
