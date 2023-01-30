@@ -1,5 +1,6 @@
-package edu. spring.td1.controller
+package edu.spring.td1.controller
 
+import edu.spring.td1.models.Categorie
 import edu.spring.td1.models.Item
 import edu.spring.td1.services.UIMessage
 import org.springframework.stereotype.Controller
@@ -18,6 +19,16 @@ class ItemsController {
             var items=HashSet<Item>()
             items.add(Item("itm"))
             return items
+        }
+
+    @get:ModelAttribute("categories")
+    val cat: Set<Categorie>
+        get(){
+            var categories= HashSet<Categorie>()
+            categories.add(Categorie("Amis"))
+            categories.add(Categorie("Famille"))
+            categories.add(Categorie("Professionnels"))
+            return categories
         }
 
     @RequestMapping("/")
@@ -57,8 +68,8 @@ class ItemsController {
     }
 
     @GetMapping("/items/delete/{nom}")
-    fun deleteAction(@ModelAttribute("nom")nom:String, @SessionAttribute("items")items: HashSet<Item>): RedirectView{
-        items.remove(items.find{it.nom ==nom})
+    fun deleteAction(@PathVariable("nom")nom:String, @SessionAttribute("items")items: HashSet<Item>): RedirectView{
+        items.removeIf {it.nom ==nom}
         return RedirectView(("/"))
     }
 
