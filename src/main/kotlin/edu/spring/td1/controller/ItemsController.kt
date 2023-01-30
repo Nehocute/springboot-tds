@@ -40,4 +40,22 @@ class ItemsController {
         return RedirectView("/")
     }
 
+    @GetMapping("/inc/{nom}")
+    fun incrementAction(@ModelAttribute("nom")nom:String, @SessionAttribute("items")items: HashSet<Item>): RedirectView{
+        var item = items.find{it.nom == nom}
+        item?.evaluation = item?.evaluation!! + 1
+        return RedirectView("/")
+    }
+
+    @GetMapping("/dec/{nom}")
+    fun decrementAction(@ModelAttribute("nom")nom:String, @SessionAttribute("items")items: HashSet<Item>): RedirectView{
+        var item = items.find{it.nom == nom}
+        if(item?.evaluation!! >0) {
+            item?.evaluation = item?.evaluation!! - 1
+        }
+        return RedirectView("/")
+    }
+
+
+
 }
