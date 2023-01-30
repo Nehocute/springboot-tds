@@ -1,0 +1,28 @@
+{{> partials/header }}
+<h1>Gestion d'items</h1>
+<a class="ui button" href="/new">Ajouter un item</a>
+{{#msg}}
+    {{> partials/message}}
+{{/msg}}
+<div class="ui list">
+{{#items}}
+    <div class="item">{{nom}}
+        <a class="ui icon button" href="/inc/{{nom}}">
+            <i class="plus icon"></i>
+        </a>
+        <a class="ui icon button" href="/dec/{{nom}}">
+            <i class="minus icon"></i>
+        </a>
+        <a class="ui icon button" href="/items/edit/{{nom}}">
+            <i class="edit icon"></i>
+        </a>
+        <a class="ui icon button" href="/items/delete/{{nom}}">
+            <i class="delete icon"></i>
+        </a>
+
+        {{evaluation}}
+    </div>
+{{/items}}
+</div>
+
+{{> partials/header }}
