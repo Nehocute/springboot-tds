@@ -1,4 +1,4 @@
-package edu.spring.td1.controller
+package edu. spring.td1.controller
 
 import edu.spring.td1.models.Item
 import edu.spring.td1.services.UIMessage
@@ -56,6 +56,28 @@ class ItemsController {
         return RedirectView("/")
     }
 
+    @GetMapping("/items/delete/{nom}")
+    fun deleteAction(@ModelAttribute("nom")nom:String, @SessionAttribute("items")items: HashSet<Item>): RedirectView{
+        items.remove(items.find{it.nom ==nom})
+        return RedirectView(("/"))
+    }
 
+    @GetMapping("/items/edit/{nom}")
+    fun modifyAction(@PathVariable("nom")nom:String):String{
+        return "edit"
+    }
+
+    @PostMapping("/editItem/{nom}")
+    fun editItemAction(@ModelAttribute("name")nom:String, @PathVariable("nom")oldNom:String,@SessionAttribute("items")items: HashSet<Item>, attrs:RedirectAttributes): RedirectView{
+
+        var item = items.find{it.nom==oldNom}
+        if (item != null) {
+            item.nom=nom
+        }
+
+        attrs.addFlashAttribute("msg",UIMessage.message("Modification d'item","$oldNom modifié en $nom dans les items"))
+
+        return RedirectView("/")
+    }
 
 }
