@@ -51,37 +51,37 @@ class ItemsController {
         return RedirectView("/")
     }
 
-    @GetMapping("/inc/{nom}")
-    fun incrementAction(@ModelAttribute("nom")nom:String, @SessionAttribute("items")items: HashSet<Item>): RedirectView{
-        var item = items.find{it.nom == nom}
+    @GetMapping("/inc/{categorie}/{nom}")
+    fun incrementAction(@PathVariable("nom")nom:String, @PathVariable("categorie")categorie: String, @SessionAttribute("categories")categories: HashSet<Categorie>): RedirectView{
+        var item = categories.find { it.libelle == categorie }?.items?.find { it.nom == nom }
         item?.evaluation = item?.evaluation!! + 1
         return RedirectView("/")
     }
 
-    @GetMapping("/dec/{nom}")
-    fun decrementAction(@ModelAttribute("nom")nom:String, @SessionAttribute("items")items: HashSet<Item>): RedirectView{
-        var item = items.find{it.nom == nom}
+    @GetMapping("/dec/{categorie}/{nom}")
+    fun decrementAction(@ModelAttribute("nom")nom:String, @PathVariable("categorie")categorie: String, @SessionAttribute("categories")categories: HashSet<Categorie>): RedirectView{
+        var item = categories.find { it.libelle == categorie }?.items?.find { it.nom == nom }
         if(item?.evaluation!! >0) {
             item?.evaluation = item?.evaluation!! - 1
         }
         return RedirectView("/")
     }
 
-    @GetMapping("/items/delete/{nom}")
-    fun deleteAction(@PathVariable("nom")nom:String, @SessionAttribute("items")items: HashSet<Item>): RedirectView{
-        items.removeIf {it.nom ==nom}
+    @GetMapping("/items/delete/{categorie}/{nom}")
+    fun deleteAction(@PathVariable("nom")nom:String, @PathVariable("categorie")categorie: String, @SessionAttribute("categories")categories: HashSet<Categorie>): RedirectView{
+        categories.find { it.libelle == categorie }?.items?.removeIf{ it.nom == nom }
         return RedirectView(("/"))
     }
 
-    @GetMapping("/items/edit/{nom}")
-    fun modifyAction(@PathVariable("nom")nom:String):String{
+    @GetMapping("/items/edit/{categorie}/{nom}")
+    fun modifyAction(@PathVariable("categorie")categorie: String, @PathVariable("nom")nom: String):String{
         return "edit"
     }
 
-    @PostMapping("/editItem/{nom}")
-    fun editItemAction(@ModelAttribute("name")nom:String, @PathVariable("nom")oldNom:String,@SessionAttribute("items")items: HashSet<Item>, attrs:RedirectAttributes): RedirectView{
+    @PostMapping("/editItem/{categorie}/{nom}")
+    fun editItemAction(@ModelAttribute("name")nom:String, @PathVariable("nom")oldNom:String, @PathVariable("categorie")categorie: String, @SessionAttribute("categories")categories: HashSet<Categorie>, attrs:RedirectAttributes): RedirectView{
 
-        var item = items.find{it.nom==oldNom}
+        var item = categories.find { it.libelle == categorie }?.items?.find { it.nom == oldNom }
         if (item != null) {
             item.nom=nom
         }

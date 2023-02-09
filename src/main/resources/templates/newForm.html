@@ -2,14 +2,16 @@
 
 <h1>Gestion d'items</h1>
 <form method="POST" action="/addNew">
+    <select class="ui dropdown" name="categorie">
+        {{#categories}}
+        <option value="{{libelle}}">{{libelle}}</option>
+        {{/categories}}
+    </select>
+    <br><br>
     <div class="ui input">
         <input type="text" name="nom">
-        <select name="categorie">
-            {{#categories}}
-            <option value="{{libelle}}">{{libelle}}</option>
-            {{/categories}}
-        </select>
     </div>
+    <br><br>
     <button class="positive ui button">Ajouter un item</button>
 </form>
 

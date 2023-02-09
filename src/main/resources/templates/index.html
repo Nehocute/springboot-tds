@@ -23,16 +23,16 @@
             <td data-label="Name">{{nom}}</td>
             <td class="stop-stretching center aligned" data-label="Evaluation">{{evaluation}}</td>
             <td class="stop-stretching center aligned">
-                <a class="ui icon button" href="/dec/{{nom}}">
-                    <i class="minus icon"></i>
-                </a>
-                <a class="ui icon button" href="/inc/{{nom}}">
+                <a class="ui icon button" href="/inc/{{libelle}}/{{nom}}">
                     <i class="plus icon"></i>
                 </a>
-                <a class="ui icon button" href="/items/edit/{{nom}}">
+                <a class="ui icon button" href="/dec/{{libelle}}/{{nom}}">
+                    <i class="minus icon"></i>
+                </a>
+                <a class="ui icon button" href="/items/edit/{{libelle}}/{{nom}}">
                     <i class="edit icon"></i>
                 </a>
-                <a class="ui icon button" href="/items/delete/{{nom}}">
+                <a class="ui icon button" href="/items/delete/{{libelle}}/{{nom}}">
                     <i class="delete icon"></i>
                 </a>
             </td>
@@ -49,6 +49,10 @@
         var tab = $(this).attr("data-tab");
         $(".tab.segment").removeClass("active");
         $(".tab.segment[data-tab=\"" + tab + "\"]").addClass("active");
+    });
+    $(function () {
+        $(".item:first").addClass("active");
+        $(".tab.segment:first").addClass("active");
     });
 </script>
 <style>
