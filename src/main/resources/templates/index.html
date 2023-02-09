@@ -5,28 +5,59 @@
     {{> partials/message}}
 {{/msg}}
 <div class="ui top attached tabular menu">
-{{#categories}}
-    <a class="item active" data-tab="{{libelle}}">{{libelle}}</a>
-    <div class="ui bottom attached tab segment active" data-tab="{{libelle}}">
-    {{#items}}
-        <div class="item">{{nom}}
-            <a class="ui icon button" href="/inc/{{nom}}">
-                <i class="plus icon"></i>
-            </a>
-            <a class="ui icon button" href="/dec/{{nom}}">
-                <i class="minus icon"></i>
-            </a>
-            <a class="ui icon button" href="/items/edit/{{nom}}">
-                <i class="edit icon"></i>
-            </a>
-            <a class="ui icon button" href="/items/delete/{{nom}}">
-                <i class="delete icon"></i>
-            </a>
-
-            {{evaluation}}
-        </div>
-    {{/items}}
-    </div>
-{{/categories}}
+    {{#categories}}
+    <div class="item" data-tab="{{libelle}}">{{libelle}}</div>
+    {{/categories}}
 </div>
+{{#categories}}
+<div class="ui bottom attached tab segment" data-tab="{{libelle}}">
+    <table class="ui celled table">
+        <thead>
+        <tr><th>Nom</th>
+            <th>Note</th>
+            <th></th>
+        </tr></thead>
+        <tbody>
+        {{#items}}
+        <tr>
+            <td data-label="Name">{{nom}}</td>
+            <td class="stop-stretching center aligned" data-label="Evaluation">{{evaluation}}</td>
+            <td class="stop-stretching center aligned">
+                <a class="ui icon button" href="/dec/{{nom}}">
+                    <i class="minus icon"></i>
+                </a>
+                <a class="ui icon button" href="/inc/{{nom}}">
+                    <i class="plus icon"></i>
+                </a>
+                <a class="ui icon button" href="/items/edit/{{nom}}">
+                    <i class="edit icon"></i>
+                </a>
+                <a class="ui icon button" href="/items/delete/{{nom}}">
+                    <i class="delete icon"></i>
+                </a>
+            </td>
+        </tr>
+        {{/items}}
+        </tbody>
+    </table>
+</div>
+{{/categories}}
+<script>
+    $(".item").click(function(){
+        $(".active").removeClass("active");
+        $(this).addClass("active");
+        var tab = $(this).attr("data-tab");
+        $(".tab.segment").removeClass("active");
+        $(".tab.segment[data-tab=\"" + tab + "\"]").addClass("active");
+    });
+</script>
+<style>
+    .stop-stretching {
+        width: 1px;
+        white-space: nowrap;
+    }
+    .item {
+        cursor: pointer;
+    }
+</style>
 {{> partials/header }}

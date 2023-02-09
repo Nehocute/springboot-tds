@@ -10,7 +10,7 @@ import org.springframework.web.servlet.view.RedirectView
 
 
 @Controller
-@SessionAttributes("items")
+@SessionAttributes("categories")
 class ItemsController {
 
     @get:ModelAttribute("items")
