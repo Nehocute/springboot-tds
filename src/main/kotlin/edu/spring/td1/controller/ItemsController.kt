@@ -13,13 +13,13 @@ import org.springframework.web.servlet.view.RedirectView
 @SessionAttributes("categories")
 class ItemsController {
 
-    @get:ModelAttribute("items")
-    val items: Set<Item>
-        get() {
-            var items=HashSet<Item>()
-            items.add(Item("itm"))
-            return items
-        }
+//    @get:ModelAttribute("items")
+//    val items: Set<Item>
+//        get() {
+//            var items=HashSet<Item>()
+//            items.add(Item("itm"))
+//            return items
+//        }
 
     @get:ModelAttribute("categories")
     val cat: Set<Categorie>
@@ -42,8 +42,8 @@ class ItemsController {
     }
 
     @PostMapping("/addNew")
-    fun addNewAction(@ModelAttribute("nom")nom:String, @SessionAttribute("items")items: HashSet<Item>, attrs:RedirectAttributes): RedirectView {
-        if(items.add(Item(nom))){
+    fun addNewAction(@ModelAttribute("nom")nom:String, @ModelAttribute("categorie") categorie: String, @SessionAttribute("categories")categories: HashSet<Categorie>, attrs:RedirectAttributes): RedirectView {
+        if(categories.find{it.libelle == categorie}?.items?.add(Item(nom)) == true){
             attrs.addFlashAttribute("msg",UIMessage.message("Ajout d'item","$nom ajouté dans les items"))
         } else {
             attrs.addFlashAttribute("msg",UIMessage.message("Ajout d'item","$nom est déjà dans la liste,<br>Il n'a pas été ajouté","warning","warning circle"))

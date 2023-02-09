@@ -4,6 +4,11 @@
 <form method="POST" action="/addNew">
     <div class="ui input">
         <input type="text" name="nom">
+        <select name="categorie">
+            {{#categories}}
+            <option value="{{libelle}}">{{libelle}}</option>
+            {{/categories}}
+        </select>
     </div>
     <button class="positive ui button">Ajouter un item</button>
 </form>
