@@ -35,12 +35,12 @@ class OrgaController {
     fun newSubmitAction(@ModelAttribute orga:Organization, @ModelAttribute("users") users:String):RedirectView{
         users.split("\n").forEach {
             if (it.trim().isBlank()) return@forEach
-            
+
             val user = User()
             val value = it.trim().split(" ", limit = 2)
             user.firstname = value[0]
             user.lastname = value[1]
-            user.email = "$user.firstname.$user.lastname@$orga.domain".lowercase()
+            user.email = "${user.firstname}.${user.lastname}@${orga.domain}".lowercase()
             user.suspended = false
             orga.addUser(user)
         }
