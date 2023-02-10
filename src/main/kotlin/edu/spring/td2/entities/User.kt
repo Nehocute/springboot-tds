@@ -8,12 +8,22 @@ open class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     open var id: Int? = null
 
-    @Column(length = 60, nullable = false, unique = true)
-    open lateinit var name: String
+    @Column(length = 255, nullable = false)
+    open lateinit var firstname: String
 
-    @Column(length = 40)
+    @Column(length = 255, nullable = false)
+    open lateinit var lastname: String
+
+    @Column(length = 255, nullable = false, unique = true)
     open var email: String? = null
 
-    @Column(length = 20)
-    open var aliases: String? = null
+//    @Column(length = 40, nullable = false)
+//    open var password: String? = null
+
+    open var suspended: Boolean = false
+
+    @ManyToOne
+    @JoinColumn(name = "idOrganization", nullable = false)
+    open lateinit var organization: Organization
+
 }

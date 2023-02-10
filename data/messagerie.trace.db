@@ -1,0 +1,339 @@
+2023-02-10 14:30:51 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "GROUPE" non trouvée
+Table "GROUPE" not found; SQL statement:
+drop table groupe [42102-214]
+2023-02-10 14:35:07 jdbc[15]: null
+org.h2.message.DbException: La connexion n'a pas été fermée et a été récupérée par le ramasse miette.
+The connection was not closed by the application and is garbage collected [90018-214]
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.message.DbException.get(DbException.java:188)
+	at org.h2.jdbc.JdbcConnection.closeOld(JdbcConnection.java:190)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:132)
+	at org.h2.util.JdbcUtils.getConnection(JdbcUtils.java:288)
+	at org.h2.server.web.WebServer.getConnection(WebServer.java:808)
+	at org.h2.server.web.WebApp.login(WebApp.java:1033)
+	at org.h2.server.web.WebApp.process(WebApp.java:226)
+	at org.h2.server.web.WebApp.processRequest(WebApp.java:176)
+	at org.h2.server.web.JakartaWebServlet.doGet(JakartaWebServlet.java:129)
+	at org.h2.server.web.JakartaWebServlet.doPost(JakartaWebServlet.java:166)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:731)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:814)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:223)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:158)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:185)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:158)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:185)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:158)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:185)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:158)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:185)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:158)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:177)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:542)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:119)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:357)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:400)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:859)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1734)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+Caused by: org.h2.jdbc.JdbcSQLNonTransientConnectionException: La connexion n'a pas été fermée et a été récupérée par le ramasse miette.
+The connection was not closed by the application and is garbage collected [90018-214]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:678)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:477)
+	... 47 more
+2023-02-10 14:35:35 jdbc[15]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Impossible de supprimer "groupe" car "FKbogb7x91sr861oie5d1s75k6t" dépend de lui
+Cannot drop "groupe" because "FKbogb7x91sr861oie5d1s75k6t" depends on it; SQL statement:
+drop table "groupe" [90107-214]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:632)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:477)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.command.ddl.DropTable.prepareDrop(DropTable.java:97)
+	at org.h2.command.ddl.DropTable.update(DropTable.java:121)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:169)
+	at org.h2.command.Command.executeUpdate(Command.java:252)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:252)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:223)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1339)
+	at org.h2.server.web.WebApp.query(WebApp.java:1137)
+	at org.h2.server.web.WebApp.query(WebApp.java:1113)
+	at org.h2.server.web.WebApp.process(WebApp.java:244)
+	at org.h2.server.web.WebApp.processRequest(WebApp.java:176)
+	at org.h2.server.web.JakartaWebServlet.doGet(JakartaWebServlet.java:129)
+	at org.h2.server.web.JakartaWebServlet.doPost(JakartaWebServlet.java:166)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:731)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:814)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:223)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:158)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:185)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:158)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:185)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:158)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:185)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:158)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:185)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:158)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:177)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:542)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:119)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:357)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:400)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:859)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1734)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+2023-02-10 14:35:39 jdbc[15]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "GROUPE" non trouvée
+Table "GROUPE" not found; SQL statement:
+drop table groupe [42102-214]
+2023-02-10 14:35:42 jdbc[15]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Impossible de supprimer "groupe" car "FKbogb7x91sr861oie5d1s75k6t" dépend de lui
+Cannot drop "groupe" because "FKbogb7x91sr861oie5d1s75k6t" depends on it; SQL statement:
+drop table "groupe" [90107-214]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:632)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:477)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.command.ddl.DropTable.prepareDrop(DropTable.java:97)
+	at org.h2.command.ddl.DropTable.update(DropTable.java:121)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:169)
+	at org.h2.command.Command.executeUpdate(Command.java:252)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:252)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:223)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1339)
+	at org.h2.server.web.WebApp.query(WebApp.java:1137)
+	at org.h2.server.web.WebApp.query(WebApp.java:1113)
+	at org.h2.server.web.WebApp.process(WebApp.java:244)
+	at org.h2.server.web.WebApp.processRequest(WebApp.java:176)
+	at org.h2.server.web.JakartaWebServlet.doGet(JakartaWebServlet.java:129)
+	at org.h2.server.web.JakartaWebServlet.doPost(JakartaWebServlet.java:166)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:731)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:814)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:223)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:158)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:185)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:158)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:185)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:158)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:185)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:158)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:185)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:158)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:177)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:542)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:119)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:357)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:400)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:859)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1734)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+2023-02-10 14:35:54 jdbc[15]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Impossible de supprimer "group" car "FK3b9mwb4emq02yrg6rnwlchdvn" dépend de lui
+Cannot drop "group" because "FK3b9mwb4emq02yrg6rnwlchdvn" depends on it; SQL statement:
+drop table "group" [90107-214]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:632)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:477)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.command.ddl.DropTable.prepareDrop(DropTable.java:97)
+	at org.h2.command.ddl.DropTable.update(DropTable.java:121)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:169)
+	at org.h2.command.Command.executeUpdate(Command.java:252)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:252)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:223)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1339)
+	at org.h2.server.web.WebApp.query(WebApp.java:1137)
+	at org.h2.server.web.WebApp.query(WebApp.java:1113)
+	at org.h2.server.web.WebApp.process(WebApp.java:244)
+	at org.h2.server.web.WebApp.processRequest(WebApp.java:176)
+	at org.h2.server.web.JakartaWebServlet.doGet(JakartaWebServlet.java:129)
+	at org.h2.server.web.JakartaWebServlet.doPost(JakartaWebServlet.java:166)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:731)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:814)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:223)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:158)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:185)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:158)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:185)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:158)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:185)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:158)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:185)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:158)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:177)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:542)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:119)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:357)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:400)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:859)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1734)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+2023-02-10 14:36:12 jdbc[15]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Impossible de supprimer "organization" car "FKohh8yynp7ksr0v9f78n9nj1o0, FKns5yice2ws7xek6o0uoo98oyq" dépend de lui
+Cannot drop "organization" because "FKohh8yynp7ksr0v9f78n9nj1o0, FKns5yice2ws7xek6o0uoo98oyq" depends on it; SQL statement:
+drop table "organization" [90107-214]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:632)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:477)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.command.ddl.DropTable.prepareDrop(DropTable.java:97)
+	at org.h2.command.ddl.DropTable.update(DropTable.java:121)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:169)
+	at org.h2.command.Command.executeUpdate(Command.java:252)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:252)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:223)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1339)
+	at org.h2.server.web.WebApp.query(WebApp.java:1137)
+	at org.h2.server.web.WebApp.query(WebApp.java:1113)
+	at org.h2.server.web.WebApp.process(WebApp.java:244)
+	at org.h2.server.web.WebApp.processRequest(WebApp.java:176)
+	at org.h2.server.web.JakartaWebServlet.doGet(JakartaWebServlet.java:129)
+	at org.h2.server.web.JakartaWebServlet.doPost(JakartaWebServlet.java:166)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:731)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:814)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:223)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:158)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:185)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:158)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:185)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:158)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:185)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:158)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:185)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:158)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:177)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:542)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:119)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:357)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:400)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:859)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1734)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+2023-02-10 14:37:39 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLDataException: Erreur lors de la conversion de données "'' (user: ""suspended"" BOOLEAN NOT NULL)"
+Data conversion error converting "'' (user: ""suspended"" BOOLEAN NOT NULL)"; SQL statement:
+INSERT INTO "PUBLIC"."user"("id","email","firstname","lastname","suspended","id_organization")VALUES(?,?,?,?,?,?) [22018-214]
+2023-02-10 14:37:39 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLDataException: Erreur lors de la conversion de données "'' (user: ""suspended"" BOOLEAN NOT NULL)"
+Data conversion error converting "'' (user: ""suspended"" BOOLEAN NOT NULL)"; SQL statement:
+INSERT INTO "PUBLIC"."user"("id","email","firstname","lastname","suspended","id_organization")VALUES(?,?,?,?,?,?) [22018-214]
+2023-02-10 14:38:37 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLDataException: Erreur lors de la conversion de données "'' (user: ""suspended"" BOOLEAN NOT NULL)"
+Data conversion error converting "'' (user: ""suspended"" BOOLEAN NOT NULL)"; SQL statement:
+INSERT INTO "PUBLIC"."user"("id","email","firstname","lastname","suspended","id_organization")VALUES(?,?,?,?,?,?) [22018-214]
+2023-02-10 14:38:37 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLDataException: Erreur lors de la conversion de données "'' (user: ""suspended"" BOOLEAN NOT NULL)"
+Data conversion error converting "'' (user: ""suspended"" BOOLEAN NOT NULL)"; SQL statement:
+INSERT INTO "PUBLIC"."user"("id","email","firstname","lastname","suspended","id_organization")VALUES(?,?,?,?,?,?) [22018-214]
+2023-02-10 15:49:53 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Valeur trop longue pour la colonne "email CHARACTER VARYING(40)": "U&'ma\\00ebl.brize\\000d\\000aaugustin bukin\\000d\\000abastien cailly\\000d\\000amah\\0... (245)"
+Value too long for column "email CHARACTER VARYING(40)": "U&'ma\\00ebl.brize\\000d\\000aaugustin bukin\\000d\\000abastien cailly\\000d\\000amah\\0... (245)"; SQL statement:
+insert into "user" ("email", "firstname", "lastname", "id_organization", "suspended", "id") values (?, ?, ?, ?, ?, ?) [22001-214]
+2023-02-10 15:50:51 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Valeur trop longue pour la colonne "email CHARACTER VARYING(40)": "'edu.spring.td2.entities.user@2d85eff0.firstname.edu.spring.td2.entities.user@2d... (147)"
+Value too long for column "email CHARACTER VARYING(40)": "'edu.spring.td2.entities.user@2d85eff0.firstname.edu.spring.td2.entities.user@2d... (147)"; SQL statement:
+insert into "user" ("email", "firstname", "lastname", "id_organization", "suspended", "id") values (?, ?, ?, ?, ?, ?) [22001-214]
+2023-02-10 15:50:54 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Valeur trop longue pour la colonne "email CHARACTER VARYING(40)": "'edu.spring.td2.entities.user@2f36c8eb.firstname.edu.spring.td2.entities.user@2f... (147)"
+Value too long for column "email CHARACTER VARYING(40)": "'edu.spring.td2.entities.user@2f36c8eb.firstname.edu.spring.td2.entities.user@2f... (147)"; SQL statement:
+insert into "user" ("email", "firstname", "lastname", "id_organization", "suspended", "id") values (?, ?, ?, ?, ?, ?) [22001-214]
+2023-02-10 15:51:38 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Valeur trop longue pour la colonne "email CHARACTER VARYING(40)": "'edu.spring.td2.entities.user@6d14e2a5.firstname.edu.spring.td2.entities.user@6d... (147)"
+Value too long for column "email CHARACTER VARYING(40)": "'edu.spring.td2.entities.user@6d14e2a5.firstname.edu.spring.td2.entities.user@6d... (147)"; SQL statement:
+insert into "user" ("email", "firstname", "lastname", "id_organization", "suspended", "id") values (?, ?, ?, ?, ?, ?) [22001-214]
+2023-02-10 15:52:16 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Valeur trop longue pour la colonne "email CHARACTER VARYING(40)": "'edu.spring.td2.entities.user@66a5ef4b.firstname.edu.spring.td2.entities.user@66... (147)"
+Value too long for column "email CHARACTER VARYING(40)": "'edu.spring.td2.entities.user@66a5ef4b.firstname.edu.spring.td2.entities.user@66... (147)"; SQL statement:
+insert into "user" ("email", "firstname", "lastname", "id_organization", "suspended", "id") values (?, ?, ?, ?, ?, ?) [22001-214]
+2023-02-10 15:53:04 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Valeur trop longue pour la colonne "email CHARACTER VARYING(40)": "'edu.spring.td2.entities.user@1548600b.firstname.edu.spring.td2.entities.user@15... (147)"
+Value too long for column "email CHARACTER VARYING(40)": "'edu.spring.td2.entities.user@1548600b.firstname.edu.spring.td2.entities.user@15... (147)"; SQL statement:
+insert into "user" ("email", "firstname", "lastname", "id_organization", "suspended", "id") values (?, ?, ?, ?, ?, ?) [22001-214]
+2023-02-10 15:53:09 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Valeur trop longue pour la colonne "email CHARACTER VARYING(40)": "'edu.spring.td2.entities.user@281926ea.firstname.edu.spring.td2.entities.user@28... (147)"
+Value too long for column "email CHARACTER VARYING(40)": "'edu.spring.td2.entities.user@281926ea.firstname.edu.spring.td2.entities.user@28... (147)"; SQL statement:
+insert into "user" ("email", "firstname", "lastname", "id_organization", "suspended", "id") values (?, ?, ?, ?, ?, ?) [22001-214]
+2023-02-10 15:53:40 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Valeur trop longue pour la colonne "email CHARACTER VARYING(40)": "'edu.spring.td2.entities.user@4b577658.firstname.edu.spring.td2.entities.user@4b... (147)"
+Value too long for column "email CHARACTER VARYING(40)": "'edu.spring.td2.entities.user@4b577658.firstname.edu.spring.td2.entities.user@4b... (147)"; SQL statement:
+insert into "user" ("email", "firstname", "lastname", "id_organization", "suspended", "id") values (?, ?, ?, ?, ?, ?) [22001-214]
+2023-02-10 15:54:14 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Erreur de syntaxe dans l'instruction SQL "delete [*]table ""user"""; attendu "identifier"
+Syntax error in SQL statement "delete [*]table ""user"""; expected "identifier"; SQL statement:
+delete table "user" [42001-214]
+2023-02-10 15:54:55 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Valeur trop longue pour la colonne "lastname CHARACTER VARYING(20)": "U&'BRIZE\\000d\\000aAugustin BUKIN\\000d\\000aBastien CAILLY\\000d\\000aMah\\00e9 CAUCH... (226)"
+Value too long for column "lastname CHARACTER VARYING(20)": "U&'BRIZE\\000d\\000aAugustin BUKIN\\000d\\000aBastien CAILLY\\000d\\000aMah\\00e9 CAUCH... (226)"; SQL statement:
+insert into "user" ("email", "firstname", "lastname", "id_organization", "suspended", "id") values (?, ?, ?, ?, ?, ?) [22001-214]

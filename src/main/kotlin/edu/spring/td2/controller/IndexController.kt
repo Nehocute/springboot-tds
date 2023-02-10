@@ -9,5 +9,5 @@ import org.springframework.web.bind.annotation.RequestMapping
 class IndexController {
 
     @RequestMapping(path = ["","index"])
-    fun indexAction():String="index"
+    fun indexAction()="index"
 }
