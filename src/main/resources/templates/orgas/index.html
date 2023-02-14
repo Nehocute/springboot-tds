@@ -9,13 +9,19 @@
 <ul>
 {{#orgas}}
     <li>{{name}} - {{domain}}</li>
-    <h5>Utilisateurs</h5>
-    <ul>
-        {{#users}}
-            <li>{{firstname}} {{lastname}} - {{email}}</li>
-        {{/users}}
-        <br>
-    </ul>
+    <a href="/orgas/display/{{id}}" class="ui button">
+        <i class="ui eye icon"></i>
+        Voir
+    </a>
+    <a href="/orgas/edit/{{id}}" class="ui button">
+        <i class="ui edit icon"></i>
+        Modifier
+    </a>
+    <a href="/orgas/delete/{{id}}" class="ui button">
+        <i class="ui trash icon"></i>
+        Supprimer
+    </a>
+
 {{/orgas}}
 </ul>
 {{> main/footer }}

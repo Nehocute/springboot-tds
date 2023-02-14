@@ -2,14 +2,18 @@ package edu.spring.td2.controller
 
 import edu.spring.td2.entities.Organization
 import edu.spring.td2.entities.User
+import edu.spring.td2.exceptions.ElementNotFoundException
 import edu.spring.td2.repositories.OrgaRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Controller
 import org.springframework.ui.ModelMap
+import org.springframework.web.bind.annotation.ExceptionHandler
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.ModelAttribute
+import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.ResponseBody
 import org.springframework.web.servlet.ModelAndView
 import org.springframework.web.servlet.view.RedirectView
 
@@ -47,4 +51,41 @@ class OrgaController {
         orgaRepository.save(orga)
         return RedirectView("/orgas")
     }
+
+    @GetMapping("/display/{id}")
+    fun displayAction(@PathVariable("id") id:Int, model:ModelMap):String {
+        val option = orgaRepository.findById(id)
+        if (option.isPresent) {
+            model["orga"] = option.get()
+            return "/orgas/display"
+        } else {
+            throw ElementNotFoundException("Organization with id $id not found")
+        }
+    }
+
+    @GetMapping("/delete/{id}")
+    fun deleteAction(@PathVariable("id") id:Int):RedirectView{
+        orgaRepository.deleteById(id)
+        return RedirectView("/orgas")
+    }
+
+    @GetMapping("/edit/{id}")
+    fun editAction(@PathVariable("id") id:Int, model:ModelMap):String{
+        val option = orgaRepository.findById(id)
+        if (option.isPresent) {
+            model["orga"] = option.get()
+            return "/orgas/form"
+        } else {
+            throw ElementNotFoundException("Organization with id $id not found")
+        }
+    }
+
+    @ExceptionHandler(value = [ElementNotFoundException::class])
+    fun handleException(e:Exception):ModelAndView{
+        val mv = ModelAndView("/main/error")
+        mv.addObject("message", e.message)
+        return mv
+    }
+
+
 }
