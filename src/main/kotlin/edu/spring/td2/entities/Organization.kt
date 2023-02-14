@@ -10,6 +10,12 @@ open class Organization() {
         }
     }
 
+    fun addGroup(group: Group) {
+        if(groups.add(group)){
+            group.organization=this
+        }
+    }
+
     constructor(name:String):this(){
         this.name=name
     }

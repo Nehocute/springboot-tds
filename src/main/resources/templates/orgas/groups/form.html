@@ -1,0 +1,16 @@
+{{> main/header }}
+<h1><a href="/">SpringBoot TD n°2</a></h1>
+<h2><a href="/orgas">Organisations</a></h2>
+{{#orga}}
+<form method="post" action="/orgas/{{id}}/groups/new" class="ui form">
+  <input type="hidden" value="{{id}}" name="idOrga">
+  <h3>Nom : {{name}}</h3>
+  <textarea name="groups" placeholder="Ajout de groupes (1/ligne)" class="ui input" rows="10"></textarea>
+  <br>
+  <div class="buttons">
+    <br>
+    <button class="ui blue button">Valider</button>
+    <a href="/orgas/display/{{id}}" class="ui button">Annuler</a>
+    {{/orga}}
+</form>
+{{> main/footer }}

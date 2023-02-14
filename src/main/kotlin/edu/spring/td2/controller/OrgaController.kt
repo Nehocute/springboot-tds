@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.ResponseBody
 import org.springframework.web.servlet.ModelAndView
 import org.springframework.web.servlet.view.RedirectView
+import java.awt.Dialog
 
 @Controller
 @RequestMapping("/orgas")
@@ -60,6 +61,7 @@ class OrgaController {
 
     @GetMapping("/delete/{id}")
     fun deleteAction(@PathVariable("id") id:Int):RedirectView{
+
         val option = orgaRepository.findById(id)
         if (option.isPresent) {
             orgaRepository.delete(option.get())
@@ -78,6 +80,30 @@ class OrgaController {
         } else {
             throw ElementNotFoundException("Organisation $id non trouvable")
         }
+    }
+
+    @GetMapping("/{id}/groups/new")
+    fun addNewGroup(@PathVariable("id") id:Int, model:ModelMap):String{
+        val option = orgaRepository.findById(id)
+        if (option.isPresent) {
+            model["orga"] = option.get()
+            return "/orgas/groups/form"
+        } else {
+            throw ElementNotFoundException("Organisation $id non trouvable")
+        }
+    }
+
+    @PostMapping("/{id}/groups/new")
+    fun addNewSubmitAction(@ModelAttribute("idOrga") idOrga:Int, @ModelAttribute("groups") groups:String):RedirectView{
+        val option = orgaRepository.findById(idOrga)
+        if (option.isPresent) {
+            orgaService.addGroupsToOrga(option.get(), groups)
+            orgaRepository.save(option.get())
+            return RedirectView("/orgas/display/$idOrga")
+        } else {
+            throw ElementNotFoundException("Organisation $idOrga non trouvable")
+        }
+
     }
 
 

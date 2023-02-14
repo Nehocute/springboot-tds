@@ -5,29 +5,42 @@
   <i class="ui plus icon"></i>
   Ajouter une organisation
 </a>
-<ul>
-
-  {{#orga}}
-  <table class="ui celled table">
-         <tr>
-           <td>Nom</td>
-           <td>{{name}}</td>
-         </tr>
-         <tr>
-            <td>Domaine</td>
-            <td>{{domain}}</td>
-            </tr>
-         <tr>
-           <td>Utilisateurs</td>
-           <td>
-                <ul>
-                {{#users}}
-                    <li>{{firstname}} {{lastname}} - {{email}}</li>
-                {{/users}}
-                </ul>
-           </td>
-         </tr>
-  </table>
-  {{/orga}}
-</ul>
+{{#orga}}
+<table class="ui celled table">
+     <tr>
+       <td>Nom</td>
+       <td>{{name}}</td>
+     </tr>
+     <tr>
+        <td>Domaine</td>
+        <td>{{domain}}</td>
+        </tr>
+     <tr>
+       <td>Utilisateurs</td>
+       <td>
+            <ul>
+            {{#users}}
+                <li>{{firstname}} {{lastname}} - {{email}}</li>
+            {{/users}}
+            </ul>
+       </td>
+     </tr>
+    <tr>
+        <td>Groupes</td>
+        <td>
+            <a href="/orgas/{{id}}/groups/new" class="ui icon blue button">
+                <i class="ui plus icon"></i>
+            </a>
+            <ul>
+            {{#groups}}
+                <li>{{name}}</li>
+            {{/groups}}
+            </ul>
+        </td>
+</table>
+{{/orga}}
+<a href="/orgas" class="ui blue button">
+    <i class="left chevron icon"></i>
+    Retour
+</a>
 {{> main/footer }}
