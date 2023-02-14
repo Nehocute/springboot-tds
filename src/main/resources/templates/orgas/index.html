@@ -1,27 +1,50 @@
 {{> main/header }}
-
-<h1>SpringBoot TD n°2</h1>
-<h2>Organisations</h2>
-<a href="/orgas/new" class="ui button">
+<h1><a href="/">SpringBoot TD n°2</a></h1>
+<h2><a href="/orgas">Organisations</a></h2>
+<a href="/orgas/new" class="ui blue button">
     <i class="ui plus icon"></i>
     Ajouter une organisation
 </a>
 <ul>
-{{#orgas}}
-    <li>{{name}} - {{domain}}</li>
-    <a href="/orgas/display/{{id}}" class="ui button">
-        <i class="ui eye icon"></i>
-        Voir
-    </a>
-    <a href="/orgas/edit/{{id}}" class="ui button">
-        <i class="ui edit icon"></i>
-        Modifier
-    </a>
-    <a href="/orgas/delete/{{id}}" class="ui button">
-        <i class="ui trash icon"></i>
-        Supprimer
-    </a>
-
-{{/orgas}}
+<table class="ui celled table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nom</th>
+            <th>Domaine</th>
+            <th>Alias</th>
+            <th>Effectifs</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#orgas}}
+        <tr>
+            <td>{{id}}</td>
+            <td>{{name}}</td>
+            <td>{{domain}}</td>
+            <td>{{aliases}}</td>
+            <td>
+                <span class="ui green label"><i class="user icon"></i>{{users.size}}</span>
+                <span class="ui green label"><i class="users icon"></i>{{groups.size}}</span>
+            </td>
+            <td>
+                <a href="/orgas/display/{{id}}" class="ui blue button">
+                    <i class="ui eye icon"></i>
+                    Voir
+                </a>
+                <a href="/orgas/edit/{{id}}" class="ui blue button">
+                    <i class="ui edit icon"></i>
+                    Modifier
+                </a>
+                <a href="/orgas/delete/{{id}}" class="ui red button">
+                    <i class="ui trash icon"></i>
+                    Supprimer
+                </a>
+            </td>
+        </tr>
+        {{/orgas}}
+    </tbody>
+</table>
 </ul>
 {{> main/footer }}

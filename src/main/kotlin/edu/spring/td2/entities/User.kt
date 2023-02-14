@@ -24,6 +24,10 @@ open class User {
 
     @ManyToOne
     @JoinColumn(name = "idOrganization", nullable = false)
-    open lateinit var organization: Organization
+    open lateinit var organization:Organization
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "user_groups")
+    open val groups = mutableSetOf<Group>()
 
 }

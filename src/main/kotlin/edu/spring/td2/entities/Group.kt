@@ -18,11 +18,11 @@ open class Group {
     @Column(length = 20)
     open var aliases: String? = null
 
-//    @ManyToOne
-//    @JoinColumn(name = "idOrganization", nullable = false)
-//    open var organization: Organization?= null
-//
-//    @ManyToMany(mappedBy = "users")
-//    open val groups = mutableSetOf<Group>()
+    @ManyToOne
+    @JoinColumn(name = "idOrganization", nullable = false)
+    open lateinit var organization:Organization
+
+    @ManyToMany(mappedBy = "groups")
+    open val users = mutableSetOf<User>()
 }
 

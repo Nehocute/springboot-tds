@@ -4,6 +4,7 @@ import edu.spring.td2.entities.Organization
 import edu.spring.td2.entities.User
 import edu.spring.td2.exceptions.ElementNotFoundException
 import edu.spring.td2.repositories.OrgaRepository
+import edu.spring.td2.services.OrgaService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Controller
 import org.springframework.ui.ModelMap
@@ -23,6 +24,10 @@ class OrgaController {
 
     @Autowired
     lateinit var orgaRepository:OrgaRepository
+
+    @Autowired
+    lateinit var orgaService: OrgaService
+
     @RequestMapping(path = ["","/index", "/"])
     fun indexAction(model:ModelMap):String{
         model["orgas"]=orgaRepository.findAll()
@@ -37,17 +42,7 @@ class OrgaController {
 
     @PostMapping("/new")
     fun newSubmitAction(@ModelAttribute orga:Organization, @ModelAttribute("users") users:String):RedirectView{
-        users.split("\n").forEach {
-            if (it.trim().isBlank()) return@forEach
-
-            val user = User()
-            val value = it.trim().split(" ", limit = 2)
-            user.firstname = value[0]
-            user.lastname = value[1]
-            user.email = "${user.firstname}.${user.lastname}@${orga.domain}".lowercase()
-            user.suspended = false
-            orga.addUser(user)
-        }
+        orgaService.addUsersToOrga(orga, users)
         orgaRepository.save(orga)
         return RedirectView("/orgas")
     }
@@ -59,13 +54,18 @@ class OrgaController {
             model["orga"] = option.get()
             return "/orgas/display"
         } else {
-            throw ElementNotFoundException("Organization with id $id not found")
+            throw ElementNotFoundException("Organisation $id non trouvable")
         }
     }
 
     @GetMapping("/delete/{id}")
     fun deleteAction(@PathVariable("id") id:Int):RedirectView{
-        orgaRepository.deleteById(id)
+        val option = orgaRepository.findById(id)
+        if (option.isPresent) {
+            orgaRepository.delete(option.get())
+        } else {
+            throw ElementNotFoundException("Organisation $id non trouvable")
+        }
         return RedirectView("/orgas")
     }
 
@@ -76,16 +76,11 @@ class OrgaController {
             model["orga"] = option.get()
             return "/orgas/form"
         } else {
-            throw ElementNotFoundException("Organization with id $id not found")
+            throw ElementNotFoundException("Organisation $id non trouvable")
         }
     }
 
-    @ExceptionHandler(value = [ElementNotFoundException::class])
-    fun handleException(e:Exception):ModelAndView{
-        val mv = ModelAndView("/main/error")
-        mv.addObject("message", e.message)
-        return mv
-    }
+
 
 
 }

@@ -345,3 +345,102 @@ delete * from 'user' [42001-214]
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Erreur de syntaxe dans l'instruction SQL "delete from [*]'user'"; attendu "identifier"
 Syntax error in SQL statement "delete from [*]'user'"; expected "identifier"; SQL statement:
 delete from 'user' [42001-214]
+2023-02-14 15:59:44 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Valeur trop longue pour la colonne "aliases CHARACTER VARYING(20)": "'noobjjjjjjjjjjjjjjjjj' (21)"
+Value too long for column "aliases CHARACTER VARYING(20)": "'noobjjjjjjjjjjjjjjjjj' (21)"; SQL statement:
+update "organization" set "aliases"=?, "domain"=?, "name"=? where "id"=? [22001-214]
+2023-02-14 16:03:25 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Valeur trop longue pour la colonne "aliases CHARACTER VARYING(20)": "'noobjjjjjjjjjjjjjjjjj' (21)"
+Value too long for column "aliases CHARACTER VARYING(20)": "'noobjjjjjjjjjjjjjjjjj' (21)"; SQL statement:
+update "organization" set "aliases"=?, "domain"=?, "name"=? where "id"=? [22001-214]
+2023-02-14 16:05:16 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Valeur trop longue pour la colonne "aliases CHARACTER VARYING(20)": "'yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy' (62)"
+Value too long for column "aliases CHARACTER VARYING(20)": "'yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy' (62)"; SQL statement:
+insert into "organization" ("aliases", "domain", "name", "id") values (?, ?, ?, ?) [22001-214]
+2023-02-14 16:09:30 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Valeur trop longue pour la colonne "aliases CHARACTER VARYING(20)": "'yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy' (62)"
+Value too long for column "aliases CHARACTER VARYING(20)": "'yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy' (62)"; SQL statement:
+insert into "organization" ("aliases", "domain", "name", "id") values (?, ?, ?, ?) [22001-214]
+2023-02-14 16:09:53 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Valeur trop longue pour la colonne "aliases CHARACTER VARYING(20)": "'yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy' (62)"
+Value too long for column "aliases CHARACTER VARYING(20)": "'yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy' (62)"; SQL statement:
+insert into "organization" ("aliases", "domain", "name", "id") values (?, ?, ?, ?) [22001-214]
+2023-02-14 16:10:09 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Valeur trop longue pour la colonne "aliases CHARACTER VARYING(20)": "'yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy' (62)"
+Value too long for column "aliases CHARACTER VARYING(20)": "'yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy' (62)"; SQL statement:
+insert into "organization" ("aliases", "domain", "name", "id") values (?, ?, ?, ?) [22001-214]
+2023-02-14 16:10:39 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Valeur trop longue pour la colonne "aliases CHARACTER VARYING(20)": "'yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy' (62)"
+Value too long for column "aliases CHARACTER VARYING(20)": "'yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy' (62)"; SQL statement:
+insert into "organization" ("aliases", "domain", "name", "id") values (?, ?, ?, ?) [22001-214]
+2023-02-14 16:10:41 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Valeur trop longue pour la colonne "aliases CHARACTER VARYING(20)": "'yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy' (62)"
+Value too long for column "aliases CHARACTER VARYING(20)": "'yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy' (62)"; SQL statement:
+insert into "organization" ("aliases", "domain", "name", "id") values (?, ?, ?, ?) [22001-214]
+2023-02-14 16:10:50 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Valeur trop longue pour la colonne "aliases CHARACTER VARYING(20)": "'yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy' (62)"
+Value too long for column "aliases CHARACTER VARYING(20)": "'yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy' (62)"; SQL statement:
+insert into "organization" ("aliases", "domain", "name", "id") values (?, ?, ?, ?) [22001-214]
+2023-02-14 16:11:29 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Valeur trop longue pour la colonne "aliases CHARACTER VARYING(20)": "'ffffffffffffffffffffffffffffff' (30)"
+Value too long for column "aliases CHARACTER VARYING(20)": "'ffffffffffffffffffffffffffffff' (30)"; SQL statement:
+update "organization" set "aliases"=?, "domain"=?, "name"=? where "id"=? [22001-214]
+2023-02-14 16:12:05 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Valeur trop longue pour la colonne "aliases CHARACTER VARYING(20)": "'ffffffffffffffffffffffffffffff' (30)"
+Value too long for column "aliases CHARACTER VARYING(20)": "'ffffffffffffffffffffffffffffff' (30)"; SQL statement:
+update "organization" set "aliases"=?, "domain"=?, "name"=? where "id"=? [22001-214]
+2023-02-14 16:21:36 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Impossible de supprimer "groupe" car "FKbogb7x91sr861oie5d1s75k6t" dépend de lui
+Cannot drop "groupe" because "FKbogb7x91sr861oie5d1s75k6t" depends on it; SQL statement:
+drop table "groupe" [90107-214]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:632)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:477)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.command.ddl.DropTable.prepareDrop(DropTable.java:97)
+	at org.h2.command.ddl.DropTable.update(DropTable.java:121)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:169)
+	at org.h2.command.Command.executeUpdate(Command.java:252)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:252)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:223)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1339)
+	at org.h2.server.web.WebApp.query(WebApp.java:1137)
+	at org.h2.server.web.WebApp.query(WebApp.java:1113)
+	at org.h2.server.web.WebApp.process(WebApp.java:244)
+	at org.h2.server.web.WebApp.processRequest(WebApp.java:176)
+	at org.h2.server.web.JakartaWebServlet.doGet(JakartaWebServlet.java:129)
+	at org.h2.server.web.JakartaWebServlet.doPost(JakartaWebServlet.java:166)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:731)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:814)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:223)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:158)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:185)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:158)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:185)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:158)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:185)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:158)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:185)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:158)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:177)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:542)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:119)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:357)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:400)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:859)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1734)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:833)

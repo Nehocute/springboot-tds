@@ -27,6 +27,10 @@ open class Organization() {
     @Column(length = 20)
     open var aliases: String? = ""
 
-    @OneToMany(cascade = [CascadeType.ALL], mappedBy = "organization", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "organization", fetch = FetchType.EAGER, cascade = [CascadeType.ALL])
+    @OrderBy("lastname ASC, firstname ASC")
     open val users = mutableSetOf<User>()
+
+    @OneToMany(mappedBy = "organization", fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
+    open val groups = mutableSetOf<Group>()
 }
