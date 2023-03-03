@@ -33,7 +33,7 @@ class MainController {
     }
 
     @PostMapping("/master/add")
-    fun addMaster(firstname: String, lastname: String): RedirectView {
+    fun addMaster(@ModelAttribute firstname: String,@ModelAttribute lastname: String): RedirectView {
         masterRepository.save(Master(firstname, lastname))
         return RedirectView("/")
     }
@@ -52,7 +52,7 @@ class MainController {
 
     @GetMapping("/dog/{id}/action")
     fun action(@PathVariable id: Int): RedirectView {
-        
+
         return RedirectView("/")
     }
 

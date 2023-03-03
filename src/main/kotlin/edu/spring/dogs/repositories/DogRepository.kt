@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository
 interface DogRepository: CrudRepository<Dog, Int> {
 
     fun findByNameAndMasterId(name: String, masterId: Int): Dog
-    fun findByMasterIsNull(): Set<Dog>
+    fun findByMasterIsNull(): List<Dog>
 
 }

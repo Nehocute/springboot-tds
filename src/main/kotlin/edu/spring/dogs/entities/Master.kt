@@ -1,19 +1,15 @@
 package edu.spring.dogs.entities
 
-import jakarta.persistence.Entity
-import jakarta.persistence.GeneratedValue
-import jakarta.persistence.OneToMany
-import jakarta.persistence.Id
-import jakarta.persistence.PreRemove
+import jakarta.persistence.*
 
 @Entity
-class Master() {
+open class Master() {
 
     @Id
     @GeneratedValue
-    var id: Int = 0
-    var firstname: String? = null
-    var lastname: String? = null
+    open var id: Int = 0
+    open var firstname: String? = null
+    open var lastname: String? = null
 
 
     constructor(firstname: String?, lastname: String?) : this() {
@@ -21,8 +17,8 @@ class Master() {
         this.lastname = lastname
     }
 
-    @OneToMany(cascade = [jakarta.persistence.CascadeType.MERGE, jakarta.persistence.CascadeType.PERSIST], mappedBy = "master")
-    var dogs: MutableSet<Dog>? = null
+    @OneToMany(cascade = [CascadeType.MERGE, CascadeType.PERSIST], fetch = FetchType.LAZY)
+    open var dogs = mutableSetOf<Dog>()
 
     fun addDog(dog:Dog): Boolean{
         if(dogs==null){

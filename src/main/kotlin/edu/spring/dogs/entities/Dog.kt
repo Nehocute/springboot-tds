@@ -1,26 +1,22 @@
 package edu.spring.dogs.entities
 
-import jakarta.persistence.Entity
-import jakarta.persistence.GeneratedValue
-import jakarta.persistence.Id
-import jakarta.persistence.ManyToMany
-import jakarta.persistence.OneToOne
+import jakarta.persistence.*
 
 @Entity
-class Dog() {
+open class Dog() {
     @Id
     @GeneratedValue
-    var id: Int = 0
-    var name: String = ""
+    open var id: Int = 0
+    open var name: String = ""
 
     constructor(name: String) : this() {
         this.name = name
     }
 
-    @OneToOne(cascade = [jakarta.persistence.CascadeType.MERGE, jakarta.persistence.CascadeType.PERSIST], mappedBy = "dog")
-    var master: Master? = null
+    @ManyToOne(cascade = [CascadeType.MERGE, CascadeType.PERSIST], fetch = FetchType.LAZY)
+    open var master: Master? = null
 
-    @ManyToMany(cascade = [jakarta.persistence.CascadeType.MERGE, jakarta.persistence.CascadeType.PERSIST], mappedBy = "dog")
-    var toys: MutableSet<Toy>? = null
+    @ManyToMany(cascade = [CascadeType.MERGE, CascadeType.PERSIST], fetch = FetchType.LAZY)
+    open var toys: MutableSet<Toy> = HashSet<Toy>()
 
 }

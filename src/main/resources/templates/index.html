@@ -1,0 +1,32 @@
+{{> main/header }}
+
+<h3>
+  Propriétaires
+  <div class="ui blue left pointing label">1</div>
+</h3>
+
+<form class="ui form" method="post" action="/master/add">
+  <div class="ui input">
+    <input type="lastname" name="lastname" placeholder="Nom">
+  </div>
+  <div class="ui input">
+    <input type="firstname" name="firstname" placeholder="Prénom">
+  </div>
+  <button class="ui icon button" type="submit">
+    <i class="plus icon"></i>
+  </button>
+</form>
+
+<table class="ui celled table">
+  <tr>
+    <td>Propriétaire</td>
+  </tr>
+  <tr>
+    <td>Actions</td>
+  </tr>
+</table>
+{{#masters}}
+{{firstname}} {{lastname}}
+{{/masters}}
+
+{{> main/footer }}

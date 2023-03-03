@@ -1,22 +1,23 @@
 package edu.spring.dogs.entities
 
-import jakarta.persistence.Entity
-import jakarta.persistence.GeneratedValue
-import jakarta.persistence.Id
+import jakarta.persistence.*
 
 @Entity
-class Toy() {
+open class Toy() {
 
     @Id
     @GeneratedValue
     private var id: Int = 0
-    private var type: String? = null
-    private var label: String = ""
+    open var type: String? = null
+    open var label: String = ""
 
     constructor(type: String?, label: String) : this() {
         this.type = type
         this.label = label
     }
+
+    @ManyToMany(mappedBy = "toys", cascade = [CascadeType.MERGE, CascadeType.PERSIST], fetch = FetchType.LAZY)
+    open var dogs = mutableSetOf<Dog>()
 
 
 }
