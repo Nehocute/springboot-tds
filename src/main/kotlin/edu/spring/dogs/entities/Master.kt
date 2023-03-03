@@ -1,13 +1,20 @@
 package edu.spring.dogs.entities
 
+import jakarta.persistence.Entity
+import jakarta.persistence.GeneratedValue
 import jakarta.persistence.OneToMany
+import jakarta.persistence.Id
 import jakarta.persistence.PreRemove
 
+@Entity
 class Master() {
 
+    @Id
+    @GeneratedValue
+    var id: Int = 0
     var firstname: String? = null
     var lastname: String? = null
-    var id: Int = 0
+
 
     constructor(firstname: String?, lastname: String?) : this() {
         this.firstname = firstname

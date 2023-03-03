@@ -1,11 +1,15 @@
 package edu.spring.dogs.entities
 
+import jakarta.persistence.Entity
+import jakarta.persistence.GeneratedValue
+import jakarta.persistence.Id
 import jakarta.persistence.ManyToMany
-import jakarta.persistence.OneToMany
 import jakarta.persistence.OneToOne
 
+@Entity
 class Dog() {
-
+    @Id
+    @GeneratedValue
     var id: Int = 0
     var name: String = ""
 
@@ -18,4 +22,5 @@ class Dog() {
 
     @ManyToMany(cascade = [jakarta.persistence.CascadeType.MERGE, jakarta.persistence.CascadeType.PERSIST], mappedBy = "dog")
     var toys: MutableSet<Toy>? = null
+
 }
