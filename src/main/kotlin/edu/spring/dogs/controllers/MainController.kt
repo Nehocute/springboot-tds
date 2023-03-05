@@ -33,14 +33,15 @@ class MainController {
     }
 
     @PostMapping("/master/add")
-    fun addMaster(@ModelAttribute firstname: String,@ModelAttribute lastname: String): RedirectView {
+    fun addMaster(@ModelAttribute("firstname") firstname: String,@ModelAttribute("lastname") lastname: String): RedirectView {
         masterRepository.save(Master(firstname, lastname))
         return RedirectView("/")
     }
 
     @PostMapping("/master/{id}/dog")
-    fun masterAction(@PathVariable id: Int, @ModelAttribute dog: Dog, @RequestParam("dog-action") dogAction: String): RedirectView {
+    fun masterAction(@PathVariable id: Int, @ModelAttribute("dogname") dog: String, @RequestParam("dog-action") dogAction: String): RedirectView {
         val master = masterRepository.findById(id).orElse(null)
+        val dog : Dog = dogRepository.findByNameAndMasterId(dog, id)
         if (master != null) {
             when (dogAction) {
                 "add" -> {
@@ -48,7 +49,7 @@ class MainController {
                     dogRepository.save(dog)
                 }
                 "give-up" -> {
-                    if(dogRepository.findByNameAndMasterId(dog.name, id) != null){
+                    if(dog != null) {
                         dog.master = null
                         dogRepository.save(dog)
                     }
@@ -65,8 +66,20 @@ class MainController {
     }
 
     @PostMapping("/dog/{id}/action")
-    fun dogAction(@PathVariable id: Int): RedirectView {
-
+    fun dogAction(@PathVariable id: Int, @ModelAttribute("dogname") master: String, @RequestParam("dog-action") dogAction: String): RedirectView {
+        val master = Master("John", "DOE")
+        val dog = dogRepository.findById(id).orElse(null)
+        if (dog != null) {
+            when (dogAction) {
+                "adopt" -> {
+                    dog.master = master
+                    dogRepository.save(dog)
+                }
+                "remove" -> {
+                    dogRepository.delete(dog)
+                }
+            }
+        }
         return RedirectView("/")
     }
 

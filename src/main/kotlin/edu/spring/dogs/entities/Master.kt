@@ -17,21 +17,17 @@ open class Master() {
         this.lastname = lastname
     }
 
-    @OneToMany(cascade = [CascadeType.MERGE, CascadeType.PERSIST], fetch = FetchType.LAZY)
+    @OneToMany(cascade = [CascadeType.MERGE, CascadeType.PERSIST])
     open var dogs = mutableSetOf<Dog>()
 
-    fun addDog(dog:Dog): Boolean{
-        if(dogs==null){
-            dogs=HashSet<Dog>()
-        }
-        return dogs!!.add(dog)
+    fun addDog(dog: Dog) {
+        dogs.add(dog)
+        dog.master = this
     }
 
-    fun giveUpDog(dog:Dog): Boolean{
-        if(dogs==null){
-            dogs=HashSet<Dog>()
-        }
-        return dogs!!.remove(dog)
+    fun giveUpDog(dog: Dog) {
+        dogs.remove(dog)
+        dog.master = null
     }
 
     @PreRemove

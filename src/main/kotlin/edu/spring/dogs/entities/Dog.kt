@@ -13,10 +13,11 @@ open class Dog() {
         this.name = name
     }
 
-    @ManyToOne(cascade = [CascadeType.MERGE, CascadeType.PERSIST], fetch = FetchType.LAZY)
+    @ManyToOne()
+    @JoinColumn(name = "master_id")
     open var master: Master? = null
 
-    @ManyToMany(cascade = [CascadeType.MERGE, CascadeType.PERSIST], fetch = FetchType.LAZY)
+    @ManyToMany()
     open var toys: MutableSet<Toy> = HashSet<Toy>()
 
 }

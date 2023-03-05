@@ -16,7 +16,8 @@ open class Toy() {
         this.label = label
     }
 
-    @ManyToMany(mappedBy = "toys", cascade = [CascadeType.MERGE, CascadeType.PERSIST], fetch = FetchType.LAZY)
+    @ManyToMany()
+    @JoinTable(name = "dog_toy", joinColumns = [JoinColumn(name = "toy_id")], inverseJoinColumns = [JoinColumn(name = "dog_id")])
     open var dogs = mutableSetOf<Dog>()
 
 
