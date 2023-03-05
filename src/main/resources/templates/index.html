@@ -6,10 +6,10 @@
 
 <form class="ui form" method="post" action="/master/add">
   <div class="ui input">
-    <input type="lastname" name="lastname" placeholder="Nom">
+    <input type="lastname" name="lastname" placeholder="Nom" required>
   </div>
   <div class="ui input">
-    <input type="firstname" name="firstname" placeholder="Prénom">
+    <input type="firstname" name="firstname" placeholder="Prénom" required>
   </div>
   <button class="ui icon button" type="submit">
     <i class="plus icon"></i>
@@ -24,6 +24,9 @@
     </tr>
   </thead>
   <tbody>
+    {{#msg}}
+    {{> main/message }}
+    {{/msg}}
     {{#masters}}
     <tr>
       <td>{{firstname}} {{lastname}}
@@ -57,7 +60,7 @@
 
 <table class="ui table">
   <thead>
-  <tr><th>Propriétaire</th>
+  <tr><th>Chiens</th>
     <th>Actions</th>
   </tr></thead>
   <tbody>
