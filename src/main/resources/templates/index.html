@@ -1,8 +1,7 @@
 {{> main/header }}
-
 <h3>
   Propriétaires
-  <div class="ui blue left pointing label">1</div>
+  <div class="ui blue left pointing label">{{masters.size}}</div>
 </h3>
 
 <form class="ui form" method="post" action="/master/add">
@@ -17,16 +16,68 @@
   </button>
 </form>
 
-<table class="ui celled table">
-  <tr>
-    <td>Propriétaire</td>
-  </tr>
-  <tr>
-    <td>Actions</td>
-  </tr>
+<table class="ui table">
+  <thead>
+    <tr>
+      <th>Propriétaire</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#masters}}
+    <tr>
+      <td>{{firstname}} {{lastname}}
+          <span class="ui lightgrey label"><i class="dog icon"></i>1</span>
+      </td>
+      <td>
+        <form class="ui form" method="post" action="/master/{{id}}/dog">
+          <div class="ui input">
+            <input type="dogname" name="dogname" placeholder="dog name">
+          </div>
+          <div class="ui buttons">
+            <button class="ui negative button" name="dog-action" value="give-up">Abandonner</button>
+            <div class="or"></div>
+            <button class="ui positive button" name="dog-action" value="add">Acquerir</button>
+          </div>
+          <a class="ui black button" href="/master/{{id}}/delete">
+            <i class="skull crossbones icon"></i>
+            Paix à son âme
+          </a>
+        </form>
+      </td>
+    </tr>
+    {{/masters}}
+  </tbody>
 </table>
-{{#masters}}
-{{firstname}} {{lastname}}
-{{/masters}}
+
+<h3>
+  Chiens à l'adoption
+  <div class="ui red left pointing label">{{dogs.size}}</div>
+</h3>
+
+<table class="ui table">
+  <thead>
+  <tr><th>Propriétaire</th>
+    <th>Actions</th>
+  </tr></thead>
+  <tbody>
+  <tr>
+    {{#dogs}}
+    <td>{{name}}</td>
+    <td>
+      <form class="ui form" method="post" action="/dog/{id}/action">
+        <div class="ui input">
+          <input type="dogname" name="dogname" placeholder="dog name">
+          <button class="ui icon button" name="dog-action" value="adopt"><i class="plus icon"></i></button>
+        </div>
+
+        <button class="ui red icon button" name="dog-action" value="remove"><i class="sign out alternate icon"></i></button>
+      </form>
+    </td>
+  </tr>
+    {{/dogs}}
+  </tbody>
+</table>
+
 
 {{> main/footer }}

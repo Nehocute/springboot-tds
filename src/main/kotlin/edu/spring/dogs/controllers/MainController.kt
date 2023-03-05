@@ -1,17 +1,14 @@
 package edu.spring.dogs.controllers
 
+import edu.spring.dogs.entities.Dog
 import edu.spring.dogs.entities.Master
 import edu.spring.dogs.repositories.DogRepository
 import edu.spring.dogs.repositories.MasterRepository
 import edu.spring.dogs.repositories.ToyRepository
-import jakarta.persistence.Id
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Controller
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.ModelAttribute
-import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.ui.ModelMap
+import org.springframework.web.bind.annotation.*
 import org.springframework.web.servlet.view.RedirectView
 
 @Controller
@@ -28,7 +25,10 @@ class MainController {
     lateinit var toyRepository: ToyRepository
 
     @RequestMapping(path = ["", "/"])
-    fun index(): String {
+    fun index(model: ModelMap): String {
+        model["dogs"] = dogRepository.findAll()
+        model["masters"] = masterRepository.findAll()
+        model["toys"] = toyRepository.findAll()
         return "index"
     }
 
@@ -39,8 +39,22 @@ class MainController {
     }
 
     @PostMapping("/master/{id}/dog")
-    fun addDogToMaster(@PathVariable id: Int, @ModelAttribute master: Master): RedirectView {
-        master.addDog(dogRepository.findById(id).get())
+    fun masterAction(@PathVariable id: Int, @ModelAttribute dog: Dog, @RequestParam("dog-action") dogAction: String): RedirectView {
+        val master = masterRepository.findById(id).orElse(null)
+        if (master != null) {
+            when (dogAction) {
+                "add" -> {
+                    dog.master = master
+                    dogRepository.save(dog)
+                }
+                "give-up" -> {
+                    if(dogRepository.findByNameAndMasterId(dog.name, id) != null){
+                        dog.master = null
+                        dogRepository.save(dog)
+                    }
+                }
+            }
+        }
         return RedirectView("/")
     }
 
@@ -50,8 +64,8 @@ class MainController {
         return RedirectView("/")
     }
 
-    @GetMapping("/dog/{id}/action")
-    fun action(@PathVariable id: Int): RedirectView {
+    @PostMapping("/dog/{id}/action")
+    fun dogAction(@PathVariable id: Int): RedirectView {
 
         return RedirectView("/")
     }
