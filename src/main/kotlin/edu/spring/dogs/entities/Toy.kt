@@ -1,24 +1,24 @@
 package edu.spring.dogs.entities
 
-import jakarta.persistence.*
+import jakarta.persistence.Column
+import jakarta.persistence.Entity
+import jakarta.persistence.GeneratedValue
+import jakarta.persistence.GenerationType
+import jakarta.persistence.Id
 
 @Entity
 open class Toy() {
-
-    @Id
-    @GeneratedValue
-    private var id: Int = 0
-    open var type: String? = null
-    open var label: String = ""
-
-    constructor(type: String?, label: String) : this() {
-        this.type = type
-        this.label = label
+    constructor(type:String, label:String):this(){
+        this.type=type
+        this.label=label
     }
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    open val id = 0
 
-    @ManyToMany()
-    @JoinTable(name = "dog_toy", joinColumns = [JoinColumn(name = "toy_id")], inverseJoinColumns = [JoinColumn(name = "dog_id")])
-    open var dogs = mutableSetOf<Dog>()
+    @Column(length = 30)
+    open var type: String? = null
 
-
+    @Column(length = 60, nullable = false, unique = true)
+    open lateinit var label: String
 }

@@ -2,43 +2,46 @@ package edu.spring.dogs.entities
 
 import jakarta.persistence.*
 
+
 @Entity
 open class Master() {
-
+    constructor(firstname:String, lastname:String):this(){
+        this.firstname=firstname
+        this.lastname=lastname
+    }
     @Id
-    @GeneratedValue
-    open var id: Int = 0
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    open var id = 0
+
+    @Column(length = 30)
     open var firstname: String? = null
+
+    @Column(length = 30)
     open var lastname: String? = null
 
+    @OneToMany(mappedBy = "master", cascade = [CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE, CascadeType.DETACH])
+    open val dogs= mutableSetOf<Dog>()
 
-    constructor(firstname: String?, lastname: String?) : this() {
-        this.firstname = firstname
-        this.lastname = lastname
+    fun addDog(dog:Dog):Boolean {
+        if(dogs.add(dog)){
+            dog.master=this
+            return true
+        }
+        return false
     }
 
-    @OneToMany(cascade = [CascadeType.MERGE, CascadeType.PERSIST])
-    open var dogs = mutableSetOf<Dog>()
-
-    fun addDog(dog: Dog) {
-        dogs.add(dog)
-        dog.master = this
-    }
-
-    fun giveUpDog(dog: Dog) {
-        dogs.remove(dog)
-        dog.master = null
+    fun giveUpDog(dog:Dog):Boolean {
+        if(dogs.remove(dog)){
+            dog.master=null
+            return true
+        }
+        return false
     }
 
     @PreRemove
-    fun preRemove(): Unit{
-        if(dogs!=null){
-            for(dog in dogs!!){
-                dog.master=null
-            }
+    open fun preRemove() {
+        for (dog in dogs){
+            dog.master=null
         }
     }
-
-
-
 }
