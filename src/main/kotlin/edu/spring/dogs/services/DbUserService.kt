@@ -1,6 +1,8 @@
 package edu.spring.dogs.services
 
+import edu.spring.dogs.entities.Role
 import edu.spring.dogs.entities.User
+import edu.spring.dogs.repositories.RoleRepository
 import edu.spring.dogs.repositories.UserRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.security.core.GrantedAuthority
@@ -15,6 +17,9 @@ class DbUserService: UserDetailsService {
     lateinit var userRepository: UserRepository
 
     @Autowired
+    lateinit var roleRepository: RoleRepository
+
+    @Autowired
     lateinit var passwordEncoder: PasswordEncoder
 
     override fun loadUserByUsername(username: String?): UserDetails {
@@ -24,7 +29,8 @@ class DbUserService: UserDetailsService {
 
     private fun getGrantedAuthorities(user: User): List<GrantedAuthority>? {
         val authorities: MutableList<GrantedAuthority> = ArrayList()
-        authorities.add(SimpleGrantedAuthority(user.role))
+        val role: Role = roleRepository.findByName(user.role) ?: throw UsernameNotFoundException("Role not found")
+        authorities.add(SimpleGrantedAuthority(role.name))
         return authorities
     }
 
