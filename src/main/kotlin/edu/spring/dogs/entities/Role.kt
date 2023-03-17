@@ -18,7 +18,4 @@ open class Role {
     @Column(length = 65, nullable = false)
     open lateinit var name:String
 
-    @OneToMany
-    open lateinit var users:List<User>
-
 }
