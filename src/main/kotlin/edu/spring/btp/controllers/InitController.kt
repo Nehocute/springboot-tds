@@ -8,8 +8,11 @@ import io.github.serpro69.kfaker.faker
 import org.springframework.beans.factory.annotation.Autowired
 //import org.springframework.security.core.userdetails.UserDetailsService
 import org.springframework.stereotype.Controller
+import org.springframework.ui.ModelMap
+import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestMapping
+import javax.management.modelmbean.ModelMBean
 
 @Controller
 @RequestMapping("/init")
@@ -148,4 +151,22 @@ class InitController {
         initComplaints(count)
         return "redirect:/"
     }
+
+    @RequestMapping(path=["/","/index",""])
+    fun index(model:ModelMap): String{
+        val domains = domainRepository.findAll()
+        model.addAttribute("domains",domains)
+        return "index"
+    }
+
+    @GetMapping("/domain/{name}")
+    fun getDomainsByParentName(@PathVariable name:String): String{
+        val domains=domainRepository.findByParentName(name)
+        domains.forEach{
+            println(it.name)
+        }
+        return "redirect:/"
+
+    }
+
 }
