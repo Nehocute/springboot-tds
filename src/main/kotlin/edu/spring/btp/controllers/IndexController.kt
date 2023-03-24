@@ -32,7 +32,7 @@ class IndexController {
         val domain = domainRepository.findByName("Root")
         model["domain"] = domain
         model["children"] = domainRepository.findByParentName("Root")
-
+        model["complaints"] = complaintRepository.findAll()
         return "index"
     }
 
