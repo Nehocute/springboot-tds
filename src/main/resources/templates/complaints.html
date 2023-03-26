@@ -1,5 +1,19 @@
 {{> main/header }}
 
+<h2 class="ui blue header">{{domain.name}}</h2>
+<h2 class="ui inverted header">Complaint(s) <span class="ui gray label">{{complaints.size}}</span></h2>
 
+<div class="ui link cards">
+    {{#complaints}}
+    <div class="ui card">
+        <div class="content">
+            <div class="header">{{title}}</div>
+            <div class="description">
+                <p>{{description}}</p>
+            </div>
+        </div>
+    </div>
+    {{/complaints}}
+</div>
 
 {{> main/footer }}

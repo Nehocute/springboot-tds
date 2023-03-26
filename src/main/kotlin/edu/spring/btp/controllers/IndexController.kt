@@ -32,7 +32,6 @@ class IndexController {
         val domain = domainRepository.findByName("Root")
         model["domain"] = domain
         model["children"] = domainRepository.findByParentName("Root")
-        model["complaints"] = complaintRepository.findAll()
         return "index"
     }
 
@@ -41,19 +40,29 @@ class IndexController {
         val domain = domainRepository.findByName(name)
         model["domain"] = domain
         model["children"] = domainRepository.findByParentName(name)
-        model["complaints"] = complaintRepository.findAll()
         return "index"
     }
 
 
     @GetMapping("complaints/{domain}")
-    fun getComplaintsByDomain(@PathVariable domain: String){
-
+    fun getComplaintsByDomain(@PathVariable domain: String, model: ModelMap): String{
+        val domain = domainRepository.findByName(domain)
+        model["domain"] = domain
+        model["complaints"] = domain.complaints
+        return "complaints"
     }
 
     @GetMapping("complaints/{domain}/sub")
-    fun getComplaintsAndChildByDomain(@PathVariable domain: String){
-
+    fun getComplaintsAndChildByDomain(@PathVariable domain: String, model: ModelMap): String{
+        val domain = domainRepository.findByName(domain)
+        model["domain"] = domain
+        val complaints = domain.complaints
+        val children = domain.children
+        for(child in children){
+            complaints.addAll(child.complaints)
+        }
+        model["complaints"] = complaints
+        return "complaints"
     }
 
     @GetMapping("complaints/{domain}/new")
