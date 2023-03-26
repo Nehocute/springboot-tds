@@ -2,7 +2,13 @@
 
 <h2 class="ui blue header">{{domain.name}}</h2>
 <h2 class="ui inverted header">Complaint(s) <span class="ui gray label">{{complaints.size}}</span></h2>
-
+<div class="ui button" id="return-button">
+    <a href="/index"><i class="grey door closed icon"></i><span class="ui grey text">Return</span></a>
+</div>
+<div class="ui button">
+    <a href="/complaints/{{domain.name}}/new"><i class="grey plus icon"></i><span class="ui grey text">New Complaint</span></a>
+</div>
+<hr>
 <div class="ui link cards">
     {{#complaints}}
     <div class="ui card">
@@ -10,6 +16,9 @@
             <div class="header">{{title}}</div>
             <div class="description">
                 <p>{{description}}</p>
+            </div>
+            <div class="footer">
+                <p>by {{user.username}}</p>
             </div>
         </div>
     </div>

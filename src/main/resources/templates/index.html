@@ -1,10 +1,10 @@
 {{> main/header }}
 
 <h2 class="ui blue header">{{domain.name}}</h2>
-<h2 class="ui inverted header">Domaine(s) <span class="ui gray label">{{children.size}}</span></h2>
+<h2 class="ui inverted header">Domain(s) <span class="ui gray label">{{children.size}}</span></h2>
 {{#domain.parent}}
 <div class="ui button" id="return-button">
-    <a href="/index"><i class="grey door closed icon"></i><span class="ui grey text">Retour</span></a>
+    <a href="/index"><i class="grey door closed icon"></i><span class="ui grey text">Return</span></a>
 </div>
 {{/domain.parent}}
 <hr>
@@ -30,7 +30,7 @@
         <div class="extra content">
             <div class="ui container center aligned">
                 <a href="/domain/{{name}}">
-                    <i class="door open icon"></i>Ouvrir
+                    <i class="door open icon"></i>Open
                 </a>
             </div>
         </div>
