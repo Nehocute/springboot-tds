@@ -19,8 +19,6 @@ class Domain() {
     @Lob
     open var description: String? = null
 
-    open var complaints_count = 0
-
     @ManyToOne(optional = true)
     @JoinColumn(name = "parent_id")
     open var parent:Domain? = null

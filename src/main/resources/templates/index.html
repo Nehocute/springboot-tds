@@ -1,9 +1,13 @@
 {{> main/header }}
 
 <h2 class="ui blue header">{{domain.name}}</h2>
-<h2 class="ui white header">Domaine(s) <span class="ui gray label">{{children.size}}</span></h2>
-
-
+<h2 class="ui inverted header">Domaine(s) <span class="ui gray label">{{children.size}}</span></h2>
+{{#domain.parent}}
+<div class="ui button" id="return-button">
+    <a href="/index"><i class="grey door closed icon"></i><span class="ui grey text">Retour</span></a>
+</div>
+{{/domain.parent}}
+<hr>
 <div class="ui link cards">
     {{#children}}
     <div class="ui card">
@@ -11,23 +15,26 @@
             <div class="header">{{name}}</div>
             <div class="providers">
 
-                <span class="ui gray text">{{providers.size}} providers</span>
+                <span class="ui grey text">{{providers.size}} providers</span>
             </div>
             <div class="description">
                 <p>{{description}}</p>
             </div>
             <div class="complaints">
-                <p><i class="purple bug icon"></i>{{complaints_count}} plaintes <span class="ui gray label">{{complaints.size}}</span>
+                <p><a href="/complaints/{{name}}/sub"><i class="purple bug icon"></i>{{complaintsCount}} plaintes</a>
+                    <a href="/complaints/{{name}}"><span class="ui gray label">{{complaints.size}}</span></a>
                 </p>
             </div>
         </div>
+        {{#hasChildren}}
         <div class="extra content">
             <div class="ui container center aligned">
-                <a href="/domain/{{id}}">
+                <a href="/domain/{{name}}">
                     <i class="door open icon"></i>Ouvrir
                 </a>
             </div>
         </div>
+        {{/hasChildren}}
     </div>
     {{/children}}
 </div>

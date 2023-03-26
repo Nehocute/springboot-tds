@@ -37,7 +37,13 @@ class IndexController {
     }
 
     @GetMapping("/domain/{name}")
-    fun getDomainsByParentName(@PathVariable name: String) = domainRepository.findByParentName(name)
+    fun getDomainsByParentName(@PathVariable name: String, model: ModelMap): String{
+        val domain = domainRepository.findByName(name)
+        model["domain"] = domain
+        model["children"] = domainRepository.findByParentName(name)
+        model["complaints"] = complaintRepository.findAll()
+        return "index"
+    }
 
 
     @GetMapping("complaints/{domain}")
