@@ -9,6 +9,15 @@
     <div class="field">
         <input class="ui input" type="text" name="description" placeholder="Description">
     </div>
+    <div class="field">
+        <div class="ui action input">
+            <select name="provider" class="ui selection dropdown">
+                {{#providers}}
+                <option value="{{id}}">{{address}} {{postalCode}} {{city}}</option>
+                {{/providers}}
+            </select>
+        </div>
+    </div>
     <button class="ui green button" type="submit">New Complaint</button>
 </form>
 {{> /main/footer}}

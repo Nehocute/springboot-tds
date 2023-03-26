@@ -73,14 +73,16 @@ class IndexController {
     fun addNewComplaint(@PathVariable domain: String, model: ModelMap): String {
         val dom = domainRepository.findByName(domain)
         model["domain"] = dom
+        model["providers"] = dom.providers
         return "forms/complaint"
     }
 
     @PostMapping("complaints/{domain}/new")
     fun addNewComplaint(@PathVariable domain: String, @ModelAttribute("title") title: String,
-                        @ModelAttribute("description") description: String): RedirectView {
+                        @ModelAttribute("description") description: String,
+                        @ModelAttribute("provider") provider: Int): RedirectView {
         val dom = domainRepository.findByName(domain)
-        val complaint = Complaint(title, description, userRepository.getRandomUser(), providerRepository.getRandomProvider(), dom)
+        val complaint = Complaint(title, description, userRepository.getRandomUser(), providerRepository.getReferenceById(provider), dom)
         complaintRepository.save(complaint)
         return RedirectView("/complaints/$domain")
     }

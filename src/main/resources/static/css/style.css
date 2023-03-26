@@ -1,3 +1,7 @@
 body{
     background: #303030;
 }
+
+.ui.selection.dropdown{
+    padding: unset;
+}
