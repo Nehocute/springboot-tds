@@ -6,6 +6,7 @@ import edu.spring.btp.repositories.DomainRepository
 import edu.spring.btp.repositories.ProviderRepository
 import edu.spring.btp.repositories.UserRepository
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.security.core.Authentication
 import org.springframework.stereotype.Controller
 import org.springframework.ui.ModelMap
 import org.springframework.web.bind.annotation.GetMapping
@@ -32,10 +33,12 @@ class IndexController {
     lateinit var userRepository: UserRepository
 
     @RequestMapping(path = ["/", "/index", ""])
-    fun index(model: ModelMap): String {
+    fun index(model: ModelMap, auth:Authentication): String {
         val domain = domainRepository.findByName("Root")
         model["domain"] = domain
         model["children"] = domainRepository.findByParentName("Root")
+        model["user"] = auth
+
         return "index"
     }
 

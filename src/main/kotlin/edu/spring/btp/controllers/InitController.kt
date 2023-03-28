@@ -6,6 +6,9 @@ import edu.spring.btp.entities.Provider
 import edu.spring.btp.entities.User
 import io.github.serpro69.kfaker.faker
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.security.core.userdetails.UserDetailsService
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
+import org.springframework.security.crypto.password.PasswordEncoder
 //import org.springframework.security.core.userdetails.UserDetailsService
 import org.springframework.stereotype.Controller
 import org.springframework.ui.ModelMap
@@ -30,8 +33,8 @@ class InitController {
     @Autowired
     lateinit var providerRepository: edu.spring.btp.repositories.ProviderRepository
 
-//    @Autowired
-//    lateinit var dbUserService: UserDetailsService
+    @Autowired
+    lateinit var dbUserService: UserDetailsService
 
     private fun initProviders(count:Int){
         val faker = faker { }
@@ -55,9 +58,10 @@ class InitController {
         val faker = faker { }
         for (i in 1..count){
             val user = User()
+            var encoder = BCryptPasswordEncoder()
             user.username = faker.name.firstName()
             user.email = faker.internet.email()
-            user.password = "password"
+            user.password = encoder.encode("password")
             user.role = "USER"
             try {
                 userRepository.save(user)
