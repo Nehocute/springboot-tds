@@ -15,20 +15,22 @@ import org.springframework.security.web.SecurityFilterChain
 class WebSecurityConfig {
 
     @Bean
-    @Throws(Exception::class)
-    fun configure(http: HttpSecurity): SecurityFilterChain {
-        http
-                .authorizeHttpRequests() { authorizeHttpRequests ->
-                    authorizeHttpRequests.requestMatchers("/", "/login", "/signup", "/css/**", "domain").permitAll()
-                    authorizeHttpRequests.requestMatchers("/error/**","/init/**").permitAll()
-                    authorizeHttpRequests.anyRequest().authenticated()
-                }
-                .formLogin { formLogin ->
-                    formLogin
-                            .loginPage("/login")
-                            .defaultSuccessUrl("/", true)
-                            .failureUrl("/login/error")
-                }
+    fun filterChain(http: HttpSecurity) : SecurityFilterChain {
+        http.authorizeHttpRequests {authorizeHttpRequests->
+            authorizeHttpRequests.requestMatchers("/", "/css/**", "/domain/**", "/login/**", "/signup/**").permitAll()
+
+            //Temporary
+            authorizeHttpRequests.requestMatchers("/error/**", "/init/**").permitAll()
+            authorizeHttpRequests.requestMatchers(PathRequest.toH2Console()).permitAll()
+
+
+            authorizeHttpRequests.anyRequest().authenticated()
+        }
+        http.headers().frameOptions().sameOrigin()
+                .and()
+                .csrf().disable()
+                .formLogin().loginPage("/login").defaultSuccessUrl("/", true).failureUrl("/login/error?error=credentials")
+
         return http.build()
     }
 
