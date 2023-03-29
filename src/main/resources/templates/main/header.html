@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="fr">
+<html lang="fr" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title>Balance ton pro...</title>
@@ -10,5 +10,12 @@
 <div id="app" class="ui container">
     <div class="ui inverted menu">
         <a href="/" class="header item">Balance ton pro...</a>
+        {{#user}}
+        <span class="ui grey label">{{username}}&nbsp;<a href="/logout" class="ui black button">Logout</a></span>
+        {{/user}}
+        {{^user}}
+        <a href="/login" class="item">Se connecter</a>
+        <a href="/signup" class="item">Créer un compte</a>
+        {{/user}}
         <div class="item right floated">Version : <span class="ui inverted label">2.1.0</span></div>
     </div>

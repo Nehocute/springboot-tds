@@ -1,0 +1,55 @@
+{{> /main/header }}
+
+<div class="ui middle grid">
+  <div class="column">
+    <div class="ui black inverted attached segment">
+      <h2 class="ui image header">
+        <img src="/static/images/ladybug.png" class="image">
+        <div class="content">
+          Création de compte - BTP
+        </div>
+      </h2>
+    </div>
+    <form class="ui attached large form" method="post" action="/">
+      <div class="ui inverted stacked segment">
+        <div class="field">
+          <div class="label">Nom d'utilisateur</div>
+          <div class="ui left icon input">
+            <i class="user icon"></i>
+            <input type="text" name="username" placeholder="Nom d'utilisateur" value="">
+          </div>
+        </div>
+        <div class="field">
+          <div class="label">Adresse mail</div>
+          <div class="ui left icon input">
+            <i class="user icon"></i>
+            <input type="text" name="mail" placeholder="E-mail address" value="">
+          </div>
+        </div>
+        <div class="field">
+          <div class="label">Mot de passe</div>
+          <div class="ui left icon input">
+            <i class="lock icon"></i>
+            <input type="password" name="password" placeholder="Password" value="">
+          </div>
+        </div>
+        <div class="field">
+          <div class="label">Confirmez votre mot de passe</div>
+          <div class="ui left icon input">
+            <i class="lock icon"></i>
+            <input type="password" name="passwordConfirm" placeholder="Password confirmation" value="">
+          </div>
+        </div>
+        <button type="submit" class="ui fluid large purple submit button">Créer le compte</button>
+      </div>
+
+      <div class="ui error message"></div>
+    </form>
+
+    <div class="ui black message">
+      Déjà un compte ? <a href="/login">Te connecter ...</a>
+    </div>
+    <a href="https://www.flaticon.com/fr/icones-gratuites/sidentifier" title="sidentifier icônes">icônes créées par ultimatearm - Flaticon</a>
+  </div>
+</div>
+{{> /main/footer }}

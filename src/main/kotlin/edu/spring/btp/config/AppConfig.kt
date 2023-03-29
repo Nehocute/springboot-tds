@@ -8,6 +8,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer
 class AppConfig : WebMvcConfigurer{
     override fun addViewControllers(registry: ViewControllerRegistry) {
         registry.addViewController("/login").setViewName("/forms/login")
+        registry.addViewController("/signup").setViewName("/forms/signup")
     }
 
 }
